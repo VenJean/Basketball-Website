@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+</head>
+<body>
+
+    <nav class="bg-red-500 text-white px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-gray-200">
+        <div class="container flex flex-wrap items-center justify-between mx-auto">
+            <a href="#" class="flex items-center">
+                <img src="./assets/images/logo.png" class="h-8 pl-4" alt="Jordan Logo" />
+                <span class="pl-2 text-lg font-semibold">Life Basketball.</span>
+            </a>
+            <div class="flex md:order-2">
+                <button type="button"
+                    class="hidden md:hidden-none md:block text-white border border-white hover:bg-white hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0">
+                    Coming Soon
+                </button>
+                <!-- Hamburger Button -->
+                <button id="menu-toggle" type="button"
+                    class="items-center p-2 text-sm text-white rounded-lg md:hidden hover:bg-gray-100 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                    <span class="sr-only">Open main menu</span>
+                    <svg id="menu-icon" class="w-6 h-6 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Navbar Items -->
+            <div id="navbar-menu"
+              class="hidden w-full md:flex md:w-auto md:order-1 transition-all duration-300 ease-in-out">
+              <ul class="w-full text-center flex-cols md:flex Justify-center items-center p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-6 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+                  <li>
+                      <a href="index.html" class="block py-2 px-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Court</a>
+                  </li>
+                  <li>
+                      <a href="#" class="font-bold block py-2 px-4 text-white bg-red-400 rounded md:bg-transparent md:text-red-400 md:p-0">Contact Us</a>
+                  </li>
+                  <li onclick="showWarning()" class="cursor-pointer">
+                    <a class="block py-2 px-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+                        About Us
+                    </a>
+                </li>
+              </ul>
+          </div>
+        </div>
+    </nav>
+
+    
+
+    <div class="mt-28 md:mt-0 h-screen w-full flex items-center justify-center bg-slate-100 px-4">
+        <div class="bg-white rounded-md shadow-md flex flex-col md:flex-row w-full max-w-md md:max-w-2xl">
+            
+            <div class="bg-red-900 p-8 rounded-md transition md:block w-full md:w-auto" id="contact_info">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-white text-xl">Contact Information</h2>
+                </div>
+                
+                <div class="mt-6 space-y-4">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-slate-200 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <h2 class="text-slate-200 text-xs">Name :</h2>
+                            <p class="text-white text-xs">C.Caesar Sancho Ven Jean</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-slate-200 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M14.243 5.757a6 6 0 10-.986 9.284 1 1 0 111.087 1.678A8 8 0 1118 10a3 3 0 01-4.8 2.401A4 4 0 1114 10a1 1 0 102 0c0-1.537-.586-3.07-1.757-4.243zM12 10a2 2 0 10-4 0 2 2 0 004 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <h2 class="text-slate-200 text-xs">Email :</h2>
+                            <p class="text-white text-xs">bossvr7x@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-slate-200 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                        </svg>
+                        <div>
+                            <h2 class="text-slate-200 text-xs">Phone :</h2>
+                            <p class="text-white text-xs">+62 895-3446-43800</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="px-6 py-8 w-full md:w-auto" id="contact_us">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-red-900 text-xl">Feedback Columns</h2>
+                    </h2>
+                </div>
+                
+                <div class="space-y-2 mt-4">
+                    <input type="text" placeholder="Enter Your Name" class="w-full text-xs px-3 h-10 outline-none rounded-md border focus:shadow-sm">
+                    <input type="text" placeholder="Enter Your Email" class="w-full text-xs px-3 h-10 outline-none rounded-md border focus:shadow-sm">
+                    <input type="text" placeholder="Subject" class="w-full text-xs px-3 h-10 outline-none rounded-md border focus:shadow-sm">
+                    <textarea placeholder="Enter your Message here" class="w-full text-xs px-3 py-2 h-20 outline-none rounded-md border focus:shadow-sm resize-none"></textarea>
+                    <input type="submit" value="Send" class="bg-gray-900 px-4 py-2 rounded-md text-white text-xs cursor-pointer hover:shadow-md">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+    <style>
+
+        /* Animasi Slide Down */
+        @keyframes slide-down {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    
+        .animate-slide-down {
+            animation: slide-down 0.3s ease-out;
+        }
+    
+        /* Animasi Fade Out */
+        @keyframes fade-out {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+    
+        .animate-fade-out {
+            animation: fade-out 0.3s ease-out;
+        }
+    
+        /* Rotasi ikon hamburger */
+        .rotate-90 {
+            transform: rotate(90deg);
+            transition: transform 0.3s ease-in-out;
+        }
+    
+      </style>
+    
+
+
+    <script>
+
+        //NAVBAR
+
+        document.addEventListener("DOMContentLoaded", function () {
+        let menuToggle = document.getElementById("menu-toggle");
+        let menu = document.getElementById("navbar-menu");
+        let icon = document.getElementById("menu-icon");
+
+        menuToggle.addEventListener("click", function () {
+            if (menu.classList.contains("hidden")) {
+                menu.classList.remove("hidden");
+                menu.classList.add("animate-slide-down");
+                icon.classList.add("rotate-90");
+            } else {
+                menu.classList.remove("animate-slide-down");
+                menu.classList.add("animate-fade-out");
+
+                setTimeout(() => {
+                    menu.classList.add("hidden");
+                    menu.classList.remove("animate-fade-out");
+                }, 300); // Delay untuk menyembunyikan setelah animasi selesai
+                icon.classList.remove("rotate-90");
+            }
+        });
+    });
+
+
+    function showWarning() {
+          alert("⚠️ Fitur 'About Us' sedang dalam tahap pengembangan!");
+      }
+
+
+
+        let contact_info = document.querySelector('#contact_info');
+        let contact_us = document.querySelector('#contact_us');
+        let swtich_to_contact_us = document.querySelector('#swtich_to_contact_us');
+        let swtich_to_contact_info = document.querySelector('#swtich_to_contact_info');
+
+
+    </script>
+
+
+</body>
+
+
+</html>

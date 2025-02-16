@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn VueJS with REST API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3.0.11/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+  </head>
+
+  <body>
+    <div id="app">
+      <nav class="bg-red-500 text-white px-2 sm:px-4 py-2.5 fixed w-full z-20 top-0 left-0 border-b border-gray-200">
+        <div class="container flex flex-wrap items-center justify-between mx-auto">
+            <a href="#" class="flex items-center">
+                <img src="./assets/images/logo.png" class="h-8 pl-4" alt="Jordan Logo" />
+                <span class="pl-2 text-lg font-semibold">Life Basketball.</span>
+            </a>
+            <div class="flex md:order-2">
+                <button type="button"
+                    class="hidden md:hidden-none md:block text-white border border-white hover:bg-white hover:text-gray-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0">
+                    Coming Soon
+                </button>
+                <!-- Hamburger Button -->
+                <button id="menu-toggle" type="button"
+                    class="items-center p-2 text-sm text-white rounded-lg md:hidden hover:bg-gray-100 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                    <span class="sr-only">Open main menu</span>
+                    <svg id="menu-icon" class="w-6 h-6 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd"
+                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Navbar Items -->
+            <div id="navbar-menu"
+              class="hidden w-full md:flex md:w-auto md:order-1 transition-all duration-300 ease-in-out">
+              <ul class="w-full text-center flex-cols md:flex Justify-center items-center p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-6 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white">
+                  <li>
+                      <a href="#" class="font-bold block py-2 px-4 text-white bg-red-400 rounded md:bg-transparent md:text-red-400 md:p-0">Court</a>
+                  </li>
+                  <li>
+                      <a href="contactus.html" class="block py-2 px-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">Contact Us</a>
+                  </li>
+                  <li onclick="showWarning()" class="cursor-pointer">
+                    <a class="block py-2 px-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0">
+                        About Us
+                    </a>
+                </li>
+              </ul>
+          </div>
+        </div>
+    </nav>
+
+
+
+    <!--COURT-->
+
+    <div id="courtList" class="bg-neutral-800 flex min-h-screen items-center justify-center pb-10">
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-24 md:mt-16 px-5">
+          
+          <!-- Card Courts -->
+          <div class="court-card lg:mt-8 rounded-lg group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30" 
+          data-id="1">
+              <div class="h-96 w-72">
+                  <img class="h-full w-full object-cover transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src="./assets/images/Jeremaya/2.jpg" alt="Jeremaya Field" />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
+              <div class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center transition-all duration-500 group-hover:translate-y-0">
+                  <h1 class="font-dmserif text-2xl md:text-3xl font-bold text-white">Jeremaya</h1>
+                  <p class="mb-3 text-base md:text-lg italic text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      Jeremaya located at Depok city, the highest popularity field in Jakarta capital.
+                  </p>
+                  <button class="hover:bg-red-500 transition-all duration-300 rounded-full bg-neutral-900 py-2 px-4 text-sm md:text-base text-white shadow shadow-black/60">
+                      See More
+                  </button>
+              </div>
+          </div>
+
+
+
+          <div class="court-card lg:mt-8 rounded-lg group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30" 
+          data-id="2">
+              <div class="h-96 w-72">
+                  <img class="h-full w-full object-cover transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src="./assets/images/Amazonia/front.jpg" alt="Amazonia" />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
+              <div class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center transition-all duration-500 group-hover:translate-y-0">
+                  <h1 class="font-dmserif text-2xl md:text-3xl font-bold text-white">Amazonia</h1>
+                  <p class="mb-3 text-base md:text-lg italic text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      Got the opportunity to play basketball in the Amazon forest!?
+                  </p>
+                  <button class="hover:bg-red-500 transition-all duration-300 rounded-full bg-neutral-900 py-2 px-4 text-sm md:text-base text-white shadow shadow-black/60">
+                      See More
+                  </button>
+              </div>
+          </div>
+
+
+
+
+
+          <div class="court-card lg:mt-8 rounded-lg group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30" 
+          data-id="3">
+              <div class="h-96 w-72">
+                  <img class="h-full w-full object-cover transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src="/assets/images/Red Jean/front.jpg" alt="Red Jean" />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
+              <div class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center transition-all duration-500 group-hover:translate-y-0">
+                  <h1 class="font-dmserif text-2xl md:text-3xl font-bold text-white">Red Jean</h1>
+                  <p class="mb-3 text-base md:text-lg italic text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      The most best red interior and calm vibe On Las Vegas...
+                  </p>
+                  <button class="hover:bg-red-500 transition-all duration-300 rounded-full bg-neutral-900 py-2 px-4 text-sm md:text-base text-white shadow shadow-black/60">
+                      See More
+                  </button>
+              </div>
+          </div>
+
+
+
+
+          <div class="court-card lg:mt-8 rounded-lg group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30" 
+          data-id="4">
+              <div class="h-96 w-72">
+                  <img class="h-full w-full object-cover transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src="./assets/images/Homie/front.jpg" alt="Homie Yow" />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
+              <div class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center transition-all duration-500 group-hover:translate-y-0">
+                  <h1 class="font-dmserif text-2xl md:text-3xl font-bold text-white">Homie Yow</h1>
+                  <p class="mb-3 text-base md:text-lg italic text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      Play basketball as at your own home 0-0
+                  </p>
+                  <button class="hover:bg-red-500 transition-all duration-300 rounded-full bg-neutral-900 py-2 px-4 text-sm md:text-base text-white shadow shadow-black/60">
+                      See More
+                  </button>
+              </div>
+          </div>
+
+
+
+
+
+          <div class="court-card lg:mt-8 rounded-lg group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30" 
+          data-id="5">
+              <div class="h-96 w-72">
+                  <img class="h-full w-full object-cover transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src="./assets/images/NBA/Front.jpg" alt="NBA" />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
+              <div class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center transition-all duration-500 group-hover:translate-y-0">
+                  <h1 class="font-dmserif text-2xl md:text-3xl font-bold text-white">NBA</h1>
+                  <p class="mb-3 text-base md:text-lg italic text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      Who's doesn't know NBA? ,Big chance to play with TOP STAR Player ever!
+                  </p>
+                  <button class="hover:bg-red-500 transition-all duration-300 rounded-full bg-neutral-900 py-2 px-4 text-sm md:text-base text-white shadow shadow-black/60">
+                      See More
+                  </button>
+              </div>
+          </div>
+
+
+
+
+
+
+          <div class="court-card lg:mt-8 rounded-lg group relative cursor-pointer items-center justify-center overflow-hidden transition-shadow hover:shadow-xl hover:shadow-black/30" 
+          data-id="6">
+              <div class="h-96 w-72">
+                  <img class="h-full w-full object-cover transition-transform duration-500 group-hover:rotate-3 group-hover:scale-125" src="./assets/images/SansPiterBurk/front.jpg" alt="Sans Pyterburg" />
+              </div>
+              <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black group-hover:from-black/70 group-hover:via-black/60 group-hover:to-black/70"></div>
+              <div class="absolute inset-0 flex flex-col items-center justify-center px-5 text-center transition-all duration-500 group-hover:translate-y-0">
+                  <h1 class="font-dmserif text-2xl md:text-3xl font-bold text-white">Sans Pyterburg
+                  <p class="mb-3 text-base md:text-lg italic text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                      Arduous Spell but! Best vibe between village mountain and sea
+                  </p>
+                  <button class="hover:bg-red-500 transition-all duration-300 rounded-full bg-neutral-900 py-2 px-4 text-sm md:text-base text-white shadow shadow-black/60">
+                      See More
+                  </button>
+              </div>
+          </div>
+          
+      </div>
+  </div>
+
+  <!-- Detail Court Section -->
+  <div id="courtDetail" class="hidden flex items-center justify-center min-h-screen bg-neutral-800">
+      <div class="w-full max-w-md md:max-w-2xl bg-white shadow-lg rounded-lg p-6 flex flex-col md:flex-row items-start">
+          
+          <!-- Bagian Kiri: Gambar -->
+          <div class="w-full md:w-1/2 flex flex-col items-center">
+              <!-- Gambar utama -->
+              <img id="courtImage" src="" alt="Court Image" 
+                   class="w-full h-auto aspect-[16/9] object-cover rounded-lg">
+              
+              <!-- Gambar kecil di bawahnya -->
+              <div class="w-full flex justify-between gap-2 mt-2">
+                  <img id="Image2" src="" alt="Image 2" 
+                       class="w-1/2 h-auto aspect-[4/3] object-cover rounded-lg">
+                  <img id="Image3" src="" alt="Image 3" 
+                       class="w-1/2 h-auto aspect-[4/3] object-cover rounded-lg">
+              </div>
+          </div>
+          
+          <!-- Bagian Kanan: Informasi -->
+          <div class="w-full md:w-1/2 md:pt-20 pl-0 md:pl-6 text-center md:text-left mt-4 md:mt-0">
+              <h2 class="text-xl font-semibold text-red-500">---Court---</h2>
+              <h2 id="courtTitle" class="text-2xl md:text-4xl font-bold text-gray-800"></h2>
+              <p id="courtDetailText" class="text-sm md:text-md text-gray-600 mt-2"></p>
+  
+              <!-- Tombol -->
+              
+              <div class="mt-4 flex flex-col md:flex-row md:justify-between md:items-center">
+                  <button class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">
+                      Order Now
+                  </button>
+
+                  <button onclick="goBack()" class="text-blue-500 px-4 py-2 rounded-lg hover:text-blue-700 md:order-1">
+                      Back
+                  </button>
+                  
+              </div>
+              
+              
+                  
+              
+      
+          </div>
+  
+      </div>
+  </div>
+    
+
+  
+  <div id="orderListContainer" class="hidden w-full max-w-md bg-white shadow-lg rounded-lg p-6">
+    <h2 class="text-xl font-bold text-gray-800 mb-4">Order List</h2>
+
+    <!-- Tambahkan overflow-x-auto agar bisa di-scroll ke samping -->
+    <div class="overflow-x-auto">
+        <table class="w-full border-collapse border border-gray-300 min-w-[500px]">
+            <thead>
+                <tr>
+                    <th class="border border-gray-300 px-4 py-2">Order ID</th>
+                    <th class="border border-gray-300 px-4 py-2">Court Name</th>
+                    <th class="border border-gray-300 px-4 py-2">Settings</th>
+                </tr>
+            </thead>
+            <tbody id="orderList">
+                <!-- List akan muncul di sini -->
+            </tbody>
+        </table>
+    </div>
+
+    <button onclick="goBack()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+        Back
+    </button>
+</div>
+
+
+
+
+  <hr class="border-t-4 border-red-500 w-full">
+
+    <!--COMMENT -->
+
+    <div id="app" class="p-4">
+      <div class="flex flex-col gap-6 items-center mt-10">
+        <!-- Table Section -->
+        <div class="w-full overflow-x-auto">
+          <h1 class="mb-4 text-lg font-bold text-gray-900 dark:text-red-900 text-center">
+            Comment Columns
+          </h1>
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-900">
+            <thead class="text-xs text-gray-400 uppercase bg-gray-50 dark:bg-gray-900">
+              <tr>
+                <th class="px-4 py-2">Name</th>
+                <th class="px-4 py-2">Court</th>
+                <th class="px-4 py-2">Rating</th>
+                <th class="px-4 py-2">Comment</th>
+                <th class="px-4 py-2">Setting Comment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white border-b dark:bg-gray-800" v-for="user in users">
+                <td class="px-4 py-2 text-blue-500 font-semibold">{{ user.name }}</td>
+                <td class="px-4 py-2 text-red-500 font-bold">{{ user.court }}</td>
+                <td class="px-4 py-2 text-red-500 font-bold">⭐{{ user.rating }}</td>
+                <td class="px-4 py-2 text-sm text-gray-700">{{ user.comment }}</td>
+                <td class="px-4 py-2 flex gap-2">
+                  <button class="text-white bg-blue-600 hover:bg-blue-700 rounded-lg text-sm px-3 py-1" @click="getEditUser(user)">Edit</button>
+                  <button class="text-white bg-red-600 hover:bg-red-700 rounded-lg text-sm px-3 py-1" @click="deleteUser(user)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Form Section -->
+        <div class="w-full bg-red-900 p-6 rounded-xl md:justify-center md:max-w-md">
+          <h1 class="mb-4 text-lg font-bold text-white text-center">Fill Your Comment</h1>
+          <form @submit.prevent="">
+            <div class="mb-3">
+              <label class="block text-sm font-medium text-white">Name:</label>
+              <input type="text" v-model="user.name" class="w-full p-2.5 rounded-lg text-sm text-white bg-gray-800 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter name" required />
+            </div>
+            <div class="mb-3">
+              <label class="block text-sm font-medium text-white">Court:</label>
+              <input type="text" v-model="user.court" class="w-full p-2.5 rounded-lg text-sm text-white bg-gray-800 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter court" required />
+            </div>
+            <div class="mb-3">
+              <label class="block text-sm font-medium text-white">Rating:</label>
+              <input type="text" v-model="user.rating" class="w-full p-2.5 rounded-lg text-sm text-white bg-gray-800 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter rating" required />
+            </div>
+            <div class="mb-3">
+              <label class="block text-sm font-medium text-white">Comment:</label>
+              <textarea v-model="user.comment" class="w-full p-2.5 rounded-lg text-sm text-white bg-gray-800 border border-gray-600 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter comment" required></textarea>
+            </div>
+            <div class="flex justify-center gap-3">
+              <button v-if="!isEdit" @click="addUser" class="text-white bg-gray-700 hover:bg-gray-800 rounded-lg text-sm px-4 py-2">Add Comment</button>
+              <button v-if="isEdit" @click="updateUser" class="text-white bg-gray-700 hover:bg-gray-800 rounded-lg text-sm px-4 py-2">Update Info</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+  <style>
+
+    /* Animasi Slide Down */
+    @keyframes slide-down {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-slide-down {
+        animation: slide-down 0.3s ease-out;
+    }
+
+    /* Animasi Fade Out */
+    @keyframes fade-out {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    .animate-fade-out {
+        animation: fade-out 0.3s ease-out;
+    }
+
+    /* Rotasi ikon hamburger */
+    .rotate-90 {
+        transform: rotate(90deg);
+        transition: transform 0.3s ease-in-out;
+    }
+
+  </style>
+
+  <script>
+
+    //NAVBAR
+
+    document.addEventListener("DOMContentLoaded", function () {
+    let menuToggle = document.getElementById("menu-toggle");
+    let menu = document.getElementById("navbar-menu");
+    let icon = document.getElementById("menu-icon");
+
+    menuToggle.addEventListener("click", function () {
+        if (menu.classList.contains("hidden")) {
+            menu.classList.remove("hidden");
+            menu.classList.add("animate-slide-down");
+            icon.classList.add("rotate-90");
+        } else {
+            menu.classList.remove("animate-slide-down");
+            menu.classList.add("animate-fade-out");
+
+            setTimeout(() => {
+                menu.classList.add("hidden");
+                menu.classList.remove("animate-fade-out");
+            }, 300); // Delay untuk menyembunyikan setelah animasi selesai
+            icon.classList.remove("rotate-90");
+        }
+    });
+});
+
+  //warning navbar about
+
+  function showWarning() {
+          alert("⚠️ Fitur 'About Us' sedang dalam tahap pengembangan!");
+      }
+
+
+
+
+
+      //court detail
+      document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".court-card").forEach(card => {
+                card.addEventListener("click", function() {
+                    let id = Number(this.getAttribute("data-id"));
+                    fetchData(id);
+                });
+            });
+        });
+
+        function fetchData(id) {
+            fetch(`https://67aecdc09e85da2f020e652c.mockapi.io/court_info/${id}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Data tidak ditemukan");
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    if (!data) {
+                        throw new Error("Data kosong");
+                    }
+
+                    // Update detail court
+                    document.getElementById("courtImage").src = data.court_image || "assets/images/Jeremaya";
+                    document.getElementById("Image2").src = data.image_2 || "default.jpg";
+                    document.getElementById("Image3").src = data.image_3 || "default.jpg";
+                    document.getElementById("courtTitle").innerText = data.court_title || "Unknown Court";
+                    document.getElementById("courtDetailText").innerText = data.court_detail || "No details available";
+
+                    // Sembunyikan daftar dan tampilkan detail
+                    document.getElementById("courtList").classList.add("hidden");
+                    document.getElementById("courtDetail").classList.remove("hidden");
+                })
+                .catch(error => {
+                    console.error("Error fetching data:", error);
+                    alert("Gagal mengambil data! Pastikan koneksi internet stabil.");
+                });
+        }
+
+        function goBack() {
+            // Sembunyikan detail dan tampilkan daftar lagi
+            document.getElementById("courtDetail").classList.add("hidden");
+            document.getElementById("courtList").classList.remove("hidden");
+        }
+
+
+
+      //image update
+        function updateImages(id, image1, image2, image3) {
+        fetch(`https://67aecdc09e85da2f020e652c.mockapi.io/court_info/${id}`, {
+            method: "PUT", // Bisa pakai "PATCH" jika hanya update sebagian
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                court_image: image1,
+                image_2: image2,
+                image_3: image3
+            })
+        })
+        
+    }
+
+    // Contoh update gambar untuk ID
+    updateImages(1, "https://i.ibb.co.com/PGp95M16/3.jpg", "https://i.ibb.co.com/nsFfj89C/front.jpg", "https://i.ibb.co.com/yFHZrRv6/1.jpg");
+    updateImages(2, "https://i.ibb.co.com/fVk2RppC/1.jpg", "https://i.ibb.co.com/JwJ60SDq/2.jpg", "https://i.ibb.co.com/pj6XCgZn/3.jpg");
+    updateImages(3, "https://i.ibb.co.com/vx0QPF3Z/Terrain-de-basket-maison.jpg", "https://i.ibb.co.com/Z1kQK9mJ/1.jpg", "https://i.ibb.co.com/N6wnFdpx/front.jpg");
+    updateImages(4, "https://i.ibb.co.com/h1JZCHwX/2.jpg", "https://i.ibb.co.com/23F1d4mx/front.jpg", "https://i.ibb.co.com/0V8vLk56/1.jpg");
+    updateImages(5, "https://i.ibb.co.com/QvtRXCKt/2.jpg", "https://i.ibb.co.com/21TXv7ZX/3.jpg", "https://i.ibb.co.com/m5y0KFbV/1.jpg");
+    updateImages(6, "https://i.ibb.co.com/HDGybQ3t/2.jpg", "https://i.ibb.co.com/spZ8HTcC/front.jpg", "https://i.ibb.co.com/v6ChNGzj/1.jpg");
+
+
+
+
+
+    //order list
+    document.addEventListener("DOMContentLoaded", function () {
+    let orderList = [];
+
+    document.querySelectorAll(".court-card").forEach(card => {
+        card.addEventListener("click", function () {
+            let id = Number(this.getAttribute("data-id"));
+            fetchData(id);
+        });
+    });
+
+    function fetchData(id) {
+        fetch(`https://67aecdc09e85da2f020e652c.mockapi.io/court_info/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("courtImage").src = data.court_image || "default.jpg";
+                document.getElementById("Image2").src = data.image_2 || "default.jpg";
+                document.getElementById("Image3").src = data.image_3 || "default.jpg";
+                document.getElementById("courtTitle").innerText = data.court_title || "Unknown Court";
+                document.getElementById("courtDetailText").innerText = data.court_detail || "No details available";
+                
+                document.getElementById("courtList").classList.add("hidden");
+                document.getElementById("courtDetail").classList.remove("hidden");
+                
+                document.querySelector("#courtDetail button.bg-red-600").setAttribute("data-id", id);
+                document.querySelector("#courtDetail button.bg-red-600").setAttribute("data-title", data.court_title);
+            })
+            .catch(error => console.error("Error:", error));
+    }
+
+    document.querySelector("#courtDetail button.bg-red-600").addEventListener("click", function () {
+        let orderId = this.getAttribute("data-id");
+        let courtTitle = this.getAttribute("data-title");
+
+        if (orderId && courtTitle) {
+            orderList.push({ id: orderId, title: courtTitle });
+        }
+
+        updateOrderList();
+        document.getElementById("courtDetail").classList.add("hidden");
+        document.getElementById("orderListContainer").classList.remove("hidden");
+    });
+
+    function updateOrderList() {
+        let orderTable = document.getElementById("orderList");
+        orderTable.innerHTML = "";
+
+        orderList.forEach((order, index) => {
+            let row = `<tr>
+                <td class="text-center border border-gray-300 px-4 py-2">${order.id}</td>
+                <td class="text-center border border-gray-300 px-4 py-2" contenteditable="true" onblur="editOrder(${index}, this.innerText)">${order.title}</td>
+                <td class="text-center border border-gray-300 px-4 py-2">
+                    <button onclick="deleteOrder(${index})" class="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+                </td>
+            </tr>`;
+            orderTable.innerHTML += row;
+        });
+    }
+
+    window.editOrder = function (index, newTitle) {
+        orderList[index].title = newTitle;
+    };
+
+    window.deleteOrder = function (index) {
+        orderList.splice(index, 1);
+        updateOrderList();
+    };
+
+    window.goBack = function () {
+        document.getElementById("orderListContainer").classList.add("hidden");
+        document.getElementById("courtList").classList.remove("hidden");
+    };
+});
+
+
+
+
+    //Comment
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          users: [],
+          user: {
+            nama: "",
+            court: "",
+            rating: "",
+            Comment: ""
+          },
+          isEdit: false,
+          userIdSelected: "",
+          editMode: false,
+        };
+      },
+      mounted: function () {
+        this.getUsers();
+      },
+      methods: {
+        getUsers() {
+          console.log("hi");
+          axios
+            .get("https://67aecdc09e85da2f020e652c.mockapi.io/user")
+            .then((response) => {
+              this.users = response.data;
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+        addUser: function () {
+          axios
+            .post("https://67aecdc09e85da2f020e652c.mockapi.io/user", {
+  
+              name: this.user.name,
+              court: this.user.court,
+              rating: this.user.rating,
+              Comment: this.user.Comment,
+            })
+            .then((response) => {
+              this.getUsers();
+              alert("New Comment on columns down below.");
+              console.log(response);
+              this.resetForm();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+        getEditUser: function (user) {
+          this.isEdit = true;
+          this.userIdSelected = user.id;
+          this.user.name = user.name;
+          this.user.court = user.court;
+          this.user.rating = user.rating;
+          this.user.comment= user.comment;
+      
+        },
+        updateUser: function () {
+          axios
+            .put(
+              `https://67aecdc09e85da2f020e652c.mockapi.io/user/${this.userIdSelected}`,
+              {
+                name: this.user.name,
+                court: this.user.court,
+                rating: this.user.rating,
+                comment: this.user.comment,
+              }
+            )
+            .then((response) => {
+              this.getUsers();
+              alert("New Update information.");
+              console.log(response);
+              this.isEdit = false;
+              this.resetForm();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        },
+        // Delete User
+        deleteUser: function (user) {
+          if (confirm("Are you sure want to delete this comment?")) {
+            axios
+              .delete(
+                `https://67aecdc09e85da2f020e652c.mockapi.io/user/${user.id}`
+              )
+              .then((res) => {
+                // handle success
+                alert("your comment section already deleted");
+                this.getUsers();
+                this.resetForm();
+              })
+              .catch((err) => {
+                // handle error
+                console.log(err);
+              });
+          }
+        },
+        resetForm: function () {
+          this.isEdit = false;
+          this.userIdSelected = null;
+          this.user.name= "";
+          this.user.court= "";
+          this.user.rating = "";
+          this.user.comment="";
+        },
+      },
+    }).mount("#app");
+  </script>
+    
+     
+
+  </body>
+</html>
